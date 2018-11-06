@@ -60,12 +60,14 @@ begin
   ## Get all options from Environment Variables
   options = Hash.new
   options["date"] = ENV["LONGDATETIME"]
+  options["servicename"] = ENV["SERVICENAME"]
   options["hostname"] = ENV["HOSTNAME"]
   options["hostdisplayname"] = ENV["HOSTDISPLAYNAME"]
-  options["hostoutput"] = ENV["HOSTOUTPUT"]
+  options["serviceoutput"] = ENV["SERVICEOUTPUT"]
   options["usermail"] = ENV["USEREMAIL"]
-  options["hoststate"] = ENV["HOSTSTATE"]
+  options["servicestate"] = ENV["SERVICESTATE"]
   options["notificationtype"] = ENV["NOTIFICATIONTYPE"]
+  options["servicedisplayname"] = ENV["SERVICEDISPLAYNAME"]
 
   options["hostaddress"] = ENV["HOSTADDRESS"]
   options["hostaddress6"] = ENV["HOSTADDRESS6"]

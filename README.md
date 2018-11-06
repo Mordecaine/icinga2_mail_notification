@@ -246,45 +246,53 @@ object NotificationCommand "mail-service-notification" {
 ```
 
 ## Create own ERB template
-To create you ERB template, you need to know, what are the names of the variables.
+To create your ERB template, you need to add the variables to your ERB template.
 If you are new in ERB language; here is a short summary [ERB Documentation](http://ruby-doc.org/stdlib-2.0.0/libdoc/erb/rdoc/ERB.html)
 
-Here is a short listing:
+This table relate the argument options (which you have defined in the Icinga2 CommandObject) to the ERB variables:
 
 ##### service
-``` ruby
-  options["date"]
-  options["hostname"]
-  options["hostdisplayname"]
-  options["hostoutput"]
-  options["usermail"]
-  options["hoststate"]
-  options["notificationtype"]
+| Script Argument |              Icinga2 variable             |            ERB Variable           |
+|:---------------:|:-----------------------------------------:|:---------------------------------:|
+|        -d       |          $icinga.long_date_time$          |          options["date"]          |
+|        -e       |               $service.name$              |       options["servicename"]      |
+|        -l       |                $host.name$                |        options["hostname"]        |
+|        -n       |            $host.display_name$            |     options["hostdisplayname"]    |
+|        -o       |              $service.output$             |      options["serviceoutput"]     |
+|        -r       |                $user.email$               |        options["usermail"]        |
+|        -s       |                $host.state$               |        options["hoststate"]       |
+|        -t       |            $notification.type$            |    options["notificationtype"]    |
+|        -u       |           $service.display_name$          |   options["servicedisplayname"]   |
+|        -T       | $notification.vars.notification_template$ |      options["templatefile"]      |
+|        -f       |          $notification.vars.from$         |        options["mailfrom"]        |
+|        -4       |               $host.address$              |       options["hostaddress"]      |
+|        -6       |              $host.address6$              |      options["hostaddress6"]      |
+|        -b       |           $notification.author$           | options["notificationauthorname"] |
+|        -c       |           $notification.comment$          |   options["notificationcomment"]  |
+|        -i       |        $notification.icingaweb2url$       |      options["icingaweb2url"]     |
+|        -E       |         $notification.vars.extra$         |    options["extrainformation"]    |
+|        -v       |        $notification.vars.logging$        |           options["log"]          |
 
-  options["hostaddress"]
-  options["hostaddress6"]
-  options["notificationauthorname"]
-  options["notificationcomment"]
-  options["icingaweb2url"]
-  options["mailfrom"]
- ```
 ##### host
-``` ruby
-  options["date"]
-  options["hostname"]
-  options["hostdisplayname"]
-  options["hostoutput"]
-  options["usermail"]
-  options["hoststate"]
-  options["notificationtype"]
+| Script Argument |              Icinga2 variable             |            ERB Variable           |
+|:---------------:|:-----------------------------------------:|:---------------------------------:|
+|        -d       |          $icinga.long_date_time$          |          options["date"]          |
+|        -l       |                $host.name$                |        options["hostname"]        |
+|        -n       |            $host.display_name$            |     options["hostdisplayname"]    |
+|        -o       |               $host.output$               |       options["hostoutput"]       |
+|        -r       |                $user.email$               |        options["usermail"]        |
+|        -s       |                $host.state$               |        options["hoststate"]       |
+|        -t       |            $notification.type$            |    options["notificationtype"]    |
+|        -T       | $notification.vars.notification_template$ |      options["templatefile"]      |
+|        -f       |          $notification.vars.from$         |        options["mailfrom"]        |
+|        -4       |               $host.address$              |       options["hostaddress"]      |
+|        -6       |              $host.address6$              |      options["hostaddress6"]      |
+|        -b       |           $notification.author$           | options["notificationauthorname"] |
+|        -c       |           $notification.comment$          |   options["notificationcomment"]  |
+|        -i       |        $notification.icingaweb2url$       |      options["icingaweb2url"]     |
+|        -E       |         $notification.vars.extra$         |    options["extrainformation"]    |
+|        -v       |        $notification.vars.logging$        |           options["log"]          |
 
-  options["hostaddress"]
-  options["hostaddress6"]
-  options["notificationauthorname"]
-  options["notificationcomment"]
-  options["icingaweb2url"]
-  options["mailfrom"]
-```
 
 ##### extrainformation
 ``` ruby
