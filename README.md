@@ -291,10 +291,19 @@ Here is a short listing:
 options["extrainformation"]
 ```
 This is an array which include all extra information which are defined as an Array in Icinga2 (you can see an example at the end).
-You can use the information in your ERP template:
+You can use the information in your ERB template:
 ``` ruby
 options["extrainformation"][0]
 options["extrainformation"][1]
 options["extrainformation"][2]
 [...]
 ```
+
+## Example
+Here is an example from the default-mail-host-notification.erb
+``` erb
+[...]
+Subject: [Icinga2] <%= options["notificationtype"] %> Alert <%= options["hostdisplayname"] %> is <%= options["hoststate"] %>
+[...]
+```
+In this example I added the Notification Type and the Host Display Name to the subject from notification mail.
