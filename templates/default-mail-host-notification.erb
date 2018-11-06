@@ -1,0 +1,121 @@
+From: <%= from %>
+To: <%= to %>
+Subject: [Icinga2] <%= options["notificationtype"] %> Alert <%= options["hostdisplayname"] %> is <%= options["hoststate"] %>
+Content-Type: multipart/related;boundary="boundry";
+
+--boundry
+Content-Type: text/html;
+
+<% if options["hoststate"] == "UP"
+     hoststate_color = "#4b7"
+   elsif options["hoststate"] == "DOWN"
+     hoststate_color = "#f56"
+   else options["hoststate"] == "UNKNOWN"
+   hoststate_color = "#a4f"
+   end %>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;">
+  <title>Company Name</title>
+
+  <style>
+    th.option_dark { background-color: #c9c9c9; font-weight: bold; width: 130px; text-align: left; }
+    th.option_light { background-color: #eaeaea; font-weight: bold; width: 130px; text-align: left;}
+    th.heading { background-color: #004488; font-weight: bold; width: 600px; text-align: center; color: #ffffff; }
+  </style>
+</head>
+
+<body>
+  <center>
+    <table border="0" cellpadding="4" cellspacing="2" style="font-family: helvetica, arial; font-size: 12px;" width="600px">
+      <tr>
+        <td>
+          <img class="logo" src="cid:logo">
+        </td>
+        <td>
+          <span>Company Name</span>
+        </td>
+      </tr>
+
+      <tr>
+        <th class="heading" colspan="2"><%= options["extrainformation"][0] %></th>
+      </tr>
+
+      <tr>
+        <th class="option_dark">Host State:</th>
+        <td style="background-color: <%= hoststate_color %> "><%= options["hoststate"] %></td>
+      </tr>
+
+      <tr>
+        <th class="option_light">Notification Type:</th>
+        <td style="background-color: #eaeaea;"><%= options["notificationtype"] %></td>
+      </tr>
+
+      <tr>
+        <th class="option_dark">Hostname:</th>
+        <td style="background-color: #c9c9c9;"><%= options["hostname"] %></td>
+      </tr>
+
+      <tr>
+        <th class="option_light">Host Data:</th>
+        <td style="background-color: #eaeaea;"><%= options["hostoutput"] %></td>
+      </tr>
+
+      <tr>
+        <th class="option_dark">IP Address:</th>
+        <td style="background-color: #c9c9c9;"><%= options["address"] %></td>
+      </tr>
+      <tr>
+        <th class="option_dark">Event Time:</th>
+        <td style="background-color: #c9c9c9;"><%= options["date"] %></td>
+      </tr>
+    </table>
+  </center>
+</body>
+</html>
+
+--boundry
+Content-Type: image/gif; name="logo.gif"
+Content-Description: logo.gif
+Content-Disposition: inline; filename="logo.gif"; size=2021;
+Content-ID: <logo>
+Content-Transfer-Encoding: base64
+
+  R0lGODlhyABkAPcAAAAAAAEBAQICAgQEBAUFBQYGBgcHBwkJCQoKCgwMDA0NDQ4ODg8PDxAQEBIS
+  EhMTExQUFBUVFRYWFhgYGBkZGRoaGhsbGxwcHB0dHR4eHiAgICEhISIiIiMjIyQkJCUlJSYmJicn
+  JygoKCkpKSoqKisrKywsLC0tLS4uLi8vLzIyMjMzMzQ0NDU1NTY2Njc3Nzg4ODo6Ojs7Ozw8PD4+
+  Pj8/P0BAQEJCQkNDQ0REREVFRUdHR0lJSUpKSktLS0xMTE1NTU5OTk9PT1BQUFFRUVNTU1RUVFVV
+  VVZWVldXV1hYWFpaWltbW1xcXF1dXV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2hoaGlp
+  aWpqamtra21tbW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19
+  fYGBgYKCgoODg4WFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjY6Ojo+Pj5CQkJGRkZKSkpWVlZaW
+  lpeXl5mZmZqampubm5ycnJ2dnZ+fn6CgoKKioqOjo6SkpKWlpaampqenp6mpqaqqqq2tra6urq+v
+  r7CwsLGxsbOzs7S0tLW1tba2tre3t7i4uLm5ubu7u7y8vL29vb6+vr+/v8DAwMHBwcPDw8TExMXF
+  xcbGxsjIyMnJycrKysvLy87Ozs/Pz9DQ0NLS0tPT09TU1NXV1dbW1tfX19jY2NnZ2dra2tvb29zc
+  3N3d3d7e3t/f3+Hh4eLi4uPj4+Tk5OXl5ebm5ufn5+jo6Onp6erq6uvr6+zs7O3t7e7u7u/v7/Dw
+  8PHx8fT09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f///wAAAAAAAAAAAAAAAAAAAAAAAAAA
+  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAyABkAAAI/wCxCRxI
+  sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzBjypxJs6bN
+  mzhz6tzJs6fPn0CDCh1KtKjRo0iTKl3KtKnTp1CjSp1KtarVq1izat3KtavXr2DDih1LtqzZs2jT
+  ql3Ltq3bt3Djyp1Lt67du3jz6t3Lt6/fv2d/rYq2U5gwgsWCiayFi6AvXVY7YQAAQIATnR8AGBrY
+  RYRINhIIlsFRdRUALLywlQJgLaeGDB84ew7JhoFo0lSB6EA4qY0bSgPnyOoURo9AP2ksDYxD7VEX
+  RgQNoZFzaqAcZ5W8BBIIR9JATHIKav84A8COwC4jBF4jdGaOKuvXInlxhC0ZHDewCFIyU6dxQTYH
+  EPQFbtgMAwgZhAykRyiabIGKQI98occyP1EDACQH3UAZZW8IRIINGx4hw4apYNMMAD9syINAKFBG
+  AgDAYTPADhsmgY0ZJwxEBBUFbbBGGw1Q2AUJAnkAwBohAMAJNtMAQCNlVlBAGQPPCJQEDlAAsIAt
+  /wlAkBW4fQLBGGEAwIRAOdAAQBFjYJODEkwA0EGVPc0CwHsF9aHANNw1IA02JNRADTZ3AICHQCGY
+  YSIAWggkCACxYEPLQDdsIdAARgjEB2usAJDJop8StEEa0ERQBjZDCiTLQDCQwSQAUwj/9AQAk2CD
+  DACNYPNHBgMZkMV/G26I2wpzCJQIAI3lkMCq2Kghg0DRAECHT60AUGJBSgAxULWvAHqHQKAAQBg2
+  GEixKCkCNbmIQM+AUogJl8lYiUCpADAMNi0Ugc0hFRi0wRnY6AEALV2UMFAznxCSAxaveiLQHhsM
+  BEIf2FTBQh1zzNFBDcBC4jEkNJDGDKx0zKEGAPPmEMZAOaCA8RwYPOHTMwA8YpANSwyUCwCjAHoo
+  NqGIKxASUJw7kAKAYMNHAQBwAUG8AyiHjSsAHJYHANiA0IW/imatRRcmCFQHAEZw0QDDTX7ycAcS
+  74FNEA4AUQQTU+TxXwEEOUGaLQDE/yAEEk9c4YubYgyEwgVAGNEEFYj8VAOBA0kRw0CeAKAYCXYD
+  LTQ2SFx2IobY7OJptGkI1APUUlN9GDAA7MGzv6fuCwARYScDQBwC1YA2AGpjs0dsAoFg9xfPJsSG
+  AgRRQVo1AHhXUA5tCjTEmUNtAgAVrRBDSQq9XALAIdKM0kOsgGYe9LhInHniBYY4Y0UI2Fho9yoN
+  oC6Q6gL5gIAHB3EQOzYuEECORradUhxgd73bA/yCZzdRAGBd2FDFgwjChgcQhAu4WQIFboENaBQC
+  Ta4SyCICEKpOOOwnmygBZSzABoHkYQEACEASBoUNAJhvc+lbVBcYAIAKVAcb5AGACYKgEC8ApK5q
+  AlEEANBwEAD8L2gzEAgYKKOCJSDwYVgTiA0FMggIUIYDUfjPBAgyBtwIgwkEoIy23BRCsTWAMiiY
+  VlCmoQyDFCMiJzLFNYxREGocwyGdAAArJDKNZFBkGYqZSDDqqBBjJJIrebwIE14AGJZE0iIB8EMl
+  N8nJTnryk6AMR6UoR0nKUprylKhMpSpXycpWuvKVsIylLGdJy1ra8pa4zKUud8nLXvryl8AMpjCH
+  ScxiGvOYyEymMpfJzGY685nQjKY0fxkQADs=
+
+--boundry--
