@@ -17,7 +17,7 @@ require 'net/smtp'
 When the answer of the command is "true", then you have the right Gems installed.
 
 
-##Configuration in Icinga2
+## Configuration in Icinga2
 To use the script in icinga2 you need the Command Object for host notification
 ```
 object NotificationCommand "mail-host-notification" {
@@ -251,7 +251,7 @@ If you are new in ERB language; here is a short summary [ERB Documentation](http
 
 Here is a short listing:
 
-#####service
+##### service
 ``` ruby
   options["date"]
   options["hostname"]
