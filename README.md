@@ -178,6 +178,7 @@ object NotificationCommand "mail-service-notification" {
                   description = "$service.display_name$"
                   required = true
                   order = -2
+          }
           "-u" = {
                   value = "$service.display_name$"
                   description = "Service display name"
