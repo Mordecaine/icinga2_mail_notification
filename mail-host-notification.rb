@@ -21,13 +21,13 @@ require 'logger'
 require 'erb'
 require 'net/smtp'
 
-begin
-  # Logger Options
-  ## Loading logging API
-  LOG_PATH = "/var/log/icinga2_notifications.log"
-  @logger = Logger.new(LOG_PATH)
-  @logger.level = Logger::DEBUG
+# Logger Options
+## Loading logging API
+LOG_PATH = "/var/log/icinga2/icinga2_notifications.log"
+@logger = Logger.new(LOG_PATH)
+@logger.level = Logger::INFO
 
+begin
   # Mailing Options
   mailserver = "localhost"
 
